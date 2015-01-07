@@ -1,0 +1,16 @@
+td {
+ width: 30px;
+ height: 30px;
+}
+
+.blank {
+	background-color: white;
+}
+
+.fruit {
+	background-color: orange;
+}
+
+.wall {
+	background-color: black;
+}
