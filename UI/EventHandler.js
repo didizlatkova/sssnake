@@ -3,11 +3,11 @@
 var SnakeNS = SnakeNS || {};
 
 SnakeNS.EventHandler = (function(){
-	setupStyles = function(snake, fruit){
+	var setupStyles = function(snake, fruit){
 
 	},
 
 	setupEvents = function(moveLeftCB, moveRightCB, moveUpCB, moveDownCB){
 
-	},
+	};
 }());

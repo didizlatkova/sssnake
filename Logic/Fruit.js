@@ -1,13 +1,13 @@
 var SnakeNS = SnakeNS || {};
 
 SnakeNS.Fruit = function(img, points, coords) {
-	var img = img,
-		points = points,
-		coords = coords;
+	this.img = img;
+	this.points = points;
+	this.coords = coords;
 };
 
-SnakeNS.Fruit.prototype = function(){
-	update = function(){
+SnakeNS.Fruit.prototype = (function(){
+	var update = function(){
 
 	},
 
@@ -17,5 +17,5 @@ SnakeNS.Fruit.prototype = function(){
 
 	increasePoints = function(value){
 
-	},
-};
+	};
+}());

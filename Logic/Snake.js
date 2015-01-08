@@ -1,17 +1,17 @@
 var SnakeNS = SnakeNS || {};
 
 SnakeNS.Snake = function(name, coords, color, speed, controls, direction, renderer) {
-	var name = name,
-		coords = coords,
-		color = color,
-		speed = speed,
-		controls = controls,
-		direction = direction,
-		renderer = renderer;
+	this.name = name;
+	this.coords = coords;
+	this.color = color;
+	this.speed = speed;
+	this.controls = controls;
+	this.direction = direction;
+	this.renderer = renderer;
 };
 
-SnakeNS.Snake.prototype = function() {
-	update = function() {
+SnakeNS.Snake.prototype = (function() {
+	var update = function() {
 
 	},
 
@@ -45,5 +45,5 @@ SnakeNS.Snake.prototype = function() {
 
 	moveDown = function(){
 		
-	}
-};
+	};
+}());
