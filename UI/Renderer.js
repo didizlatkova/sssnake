@@ -6,7 +6,7 @@ SnakeNS.Renderer = function (colors) {
 	this.COLORS = colors;
 };
 
-SnakeNS.Renderer.prototype = (function () {
+SnakeNS.Renderer.prototype = function () {
 	var renderField = function (field) {
 		var table = document.createElement("table"),
 			row,
@@ -41,7 +41,10 @@ SnakeNS.Renderer.prototype = (function () {
 
 	eraseBlock = function (block) {
 		var cell = document.getElementById('block-'+ block.x + block.y);
-		cell.className = this.COLORS[BlockType.BLANK];
-	};
+		cell.className = this.COLORS[SnakeNS.BLOCK_TYPE.BLANK];
+	}
 
-}());
+	return {
+		renderField: renderField
+	};
+}();

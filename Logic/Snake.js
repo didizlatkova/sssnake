@@ -12,7 +12,12 @@ SnakeNS.Snake = function(name, coords, color, speed, controls, direction, render
 
 SnakeNS.Snake.prototype = (function() {
 	var update = function() {
+		var i = 0;
 
+		for (i = 0; i < this.coords.length; i++) {
+			var cell = document.getElementById('block-'+ this.coords[i].x + '-' + this.coords[i].y);
+			cell.className = this.name;
+		}
 	},
 
 	checkForCollisions = function(field) {
@@ -45,5 +50,9 @@ SnakeNS.Snake.prototype = (function() {
 
 	moveDown = function(){
 		
+	}
+
+	return {
+		update: update
 	};
 }());
