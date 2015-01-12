@@ -2,12 +2,15 @@
 
 var SnakeNS = SnakeNS || {};
 
-SnakeNS.EventHandler = (function(){
-	var setupStyles = function(snake, fruit){
+SnakeNS.EventHandler = (function() {
+	return {
+		setupStyles: function(snake, fruit) {			
+			//$('.' + snake.name).css("background-color", snake.color);
+			$('.fruit').css("background-image", 'url('+ fruit.img +')');
+		},
 
-	},
+		setupEvents: function(turnLeftCB, turnRightCB, turnUpCB, turnDownCB) {
 
-	setupEvents = function(moveLeftCB, moveRightCB, moveUpCB, moveDownCB){
-
+		}
 	};
 }());

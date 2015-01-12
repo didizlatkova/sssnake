@@ -2,8 +2,8 @@
 
 var SnakeNS = SnakeNS || {};
 
-SnakeNS.Renderer = function (colors) {
-	this.COLORS = colors;
+SnakeNS.Renderer = function (classNames) {
+	this.CLASS_NAMES = classNames;
 };
 
 SnakeNS.Renderer.prototype = function () {
@@ -21,8 +21,8 @@ SnakeNS.Renderer.prototype = function () {
 			row = document.createElement('tr');
 				for (j = 0; j < field[i].length; j++) {
 					cell = document.createElement('td');
-					cell.className = this.COLORS[field[i][j]];
-					cell.id = 'block-' + i + '-' + j;
+					cell.className = this.CLASS_NAMES[field[i][j]];
+					cell.id = 'block-' + j + '-' + i;
 					row.appendChild(cell);
 				}
 
@@ -30,9 +30,9 @@ SnakeNS.Renderer.prototype = function () {
 		}
 	},
 
-	renderBlock = function (block, color) {
-		var cell = document.getElementById('block-'+ block.x + block.y);
-		cell.className = color;
+	renderBlock = function (block, className) {
+		var cell = document.getElementById('block-'+ block.x + '-' + block.y);
+		cell.className = className;
 	},
 
 	renderPoints = function (points) {
@@ -40,11 +40,13 @@ SnakeNS.Renderer.prototype = function () {
 	},
 
 	eraseBlock = function (block) {
-		var cell = document.getElementById('block-'+ block.x + block.y);
-		cell.className = this.COLORS[SnakeNS.BLOCK_TYPE.BLANK];
+		var cell = document.getElementById('block-'+ block.x + '-' + block.y);
+		cell.className = this.CLASS_NAMES[SnakeNS.BLOCK_TYPE.BLANK];
 	}
 
 	return {
-		renderField: renderField
+		renderField: renderField,
+		eraseBlock: eraseBlock,
+		renderBlock: renderBlock
 	};
 }();

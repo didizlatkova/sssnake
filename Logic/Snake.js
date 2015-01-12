@@ -1,3 +1,6 @@
+/// <reference path="Direction.js" />
+/// <reference path="BlockType.js" />
+
 var SnakeNS = SnakeNS || {};
 
 SnakeNS.Snake = function(name, coords, color, speed, controls, direction, renderer) {
@@ -11,16 +14,7 @@ SnakeNS.Snake = function(name, coords, color, speed, controls, direction, render
 };
 
 SnakeNS.Snake.prototype = (function() {
-	var update = function() {
-		var i = 0;
-
-		for (i = 0; i < this.coords.length; i++) {
-			var cell = document.getElementById('block-'+ this.coords[i].x + '-' + this.coords[i].y);
-			cell.className = this.name;
-		}
-	},
-
-	checkForCollisions = function(field) {
+	var checkForCollisions = function(field) {
 
 	},
 
@@ -36,23 +30,43 @@ SnakeNS.Snake.prototype = (function() {
 
 	},
 
-	moveLeft = function() {
+	move = function(){
+		var lastBlock = this.coords[this.coords.length - 1];
+		var newBlock;
+
+		this.renderer.eraseBlock(this.coords[0]);
+		this.coords.shift();
+
+		switch(this.direction) {
+		    case SnakeNS.DIRECTION.LEFT:		    
+				newBlock = {x:lastBlock.x + 1, y: lastBlock.y};					        
+		        break;
+		    case 2:
+		        break;
+		    default:
+		        console.log("AS");
+		} 
+		this.coords.push(newBlock);
+		this.renderer.renderBlock(newBlock, this.name);
+	},
+
+	turnLeft = function() {
 
 	},
 
-	moveRight = function() {
+	turnRight = function() {
 
 	},
 
-	moveUp = function(){
+	turnUp = function(){
 
 	},
 
-	moveDown = function(){
+	turnDown = function(){
 		
 	}
 
 	return {
-		update: update
+		move: move
 	};
 }());

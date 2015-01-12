@@ -1,3 +1,5 @@
+/// <reference path="BlockType.js" />
+
 var SnakeNS = SnakeNS || {};
 
 SnakeNS.Fruit = function(img, points, coords) {
@@ -7,15 +9,14 @@ SnakeNS.Fruit = function(img, points, coords) {
 };
 
 SnakeNS.Fruit.prototype = (function(){
-	var update = function(){
-
-	},
-
-	generatePosition = function(field, snake){
+	var generatePosition = function(field, snake){
 
 	},
 
 	increasePoints = function(value){
 
+	}
+
+	return{
 	};
 }());
