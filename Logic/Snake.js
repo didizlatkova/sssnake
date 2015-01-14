@@ -1,5 +1,6 @@
 /// <reference path="Direction.js" />
 /// <reference path="BlockType.js" />
+/// <reference path="Fruit.js" />
 
 var SnakeNS = SnakeNS || {};
 
@@ -14,28 +15,49 @@ SnakeNS.Snake = function(name, coords, color, speed, controls, direction, render
 };
 
 SnakeNS.Snake.prototype = (function() {
-	var checkForCollisions = function(field) {
+	var checkForCollisions = function(field, block) {		
+		if (field[block.y][block.x] === SnakeNS.BLOCK_TYPE.WALL) {
+			return crashIntoWall();
+		}
+		if (this.coords.filter(function(e) { return e.x === block.x && e.y === block.y; }).length > 0) {
+ 			return crashIntoSelf();
+		}
 
-	},
+		return false;
+	}
 
 	crashIntoWall = function() {
-
+		alert("game over");
+		return true;
 	},
 
-	eatFruit = function(fruit) {
+	crashIntoSelf = function() {
+		alert("game over");
+		return true;
+	},
 
+	checkForFruit = function(fruit, field, block){
+		if (block.y === fruit.coords.y && block.x === fruit.coords.x) {
+			eatFruit.call(this, fruit, field);
+			return true;
+		}
+
+		return false;
+	},
+
+	eatFruit = function(fruit, field) {
+		this.renderer.eraseBlock(fruit.coords);
+		fruit.generatePosition(field, this);
+		this.renderer.renderBlock(fruit.coords, SnakeNS.BLOCK_TYPE.FRUIT);
 	},
 
 	accelerate = function(value) {
 
 	},
 
-	move = function(){
+	move = function(fruit, field){		
 		var lastBlock = this.coords[this.coords.length - 1];
-		var newBlock;
-
-		this.renderer.eraseBlock(this.coords[0]);
-		this.coords.shift();
+		var newBlock;		
 
 		switch(this.direction) {
 		    case SnakeNS.DIRECTION.LEFT:		    
@@ -50,10 +72,19 @@ SnakeNS.Snake.prototype = (function() {
 	        case SnakeNS.DIRECTION.DOWN:
 	    		newBlock = {x:lastBlock.x, y: lastBlock.y + 1};
 	        	break;
-		} 
+		}
+
+		if(checkForCollisions.call(this, field, newBlock)){
+			return true;
+		}
+
+		if (checkForFruit.call(this, fruit, field, newBlock) === false) {
+			this.renderer.eraseBlock(this.coords[0]);
+			this.coords.shift();
+		}
 		
 		this.coords.push(newBlock);
-		this.renderer.renderBlock(newBlock, this.name);
+		this.renderer.renderBlock(newBlock, SnakeNS.BLOCK_TYPE.SNAKE);
 	},
 
 	turnLeft = function() {

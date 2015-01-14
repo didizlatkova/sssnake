@@ -30,9 +30,9 @@ SnakeNS.Renderer.prototype = function () {
 		}
 	},
 
-	renderBlock = function (block, className) {
+	renderBlock = function (block, blockType) {
 		var cell = document.getElementById('block-'+ block.x + '-' + block.y);
-		cell.className = className;
+		cell.className = this.CLASS_NAMES[blockType];
 	},
 
 	renderPoints = function (points) {

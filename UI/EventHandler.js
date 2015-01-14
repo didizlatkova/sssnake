@@ -5,11 +5,6 @@ var SnakeNS = SnakeNS || {};
 
 SnakeNS.EventHandler = (function() {
 	return {
-		setupStyles: function(snake, fruit) {
-			//$('.' + snake.name).css("background-color", snake.color);
-			$('.fruit').css("background-image", 'url(' + fruit.img + ')');
-		},
-
 		setupEvents: function(snake) {
 			$(document).keydown(function(e) {
 				var key = e.keyCode || e.which;
