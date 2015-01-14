@@ -3,17 +3,15 @@ var SnakeNS = SnakeNS || {};
 SnakeNS.Engine = function() {};
 
 SnakeNS.Engine = (function() {
-	var game,
-		snake;
+	var game;
 
 	return {
-		run: function() {
+		run: function(snake) {
 			snake.move();
 		},
 
-		start: function(s){
-			snake = s;
-			game = setInterval(this.run, 1000);
+		start: function(snake){
+			game = setInterval(this.run.bind(this, snake), 1000);
 		},
 
 		end: function(){

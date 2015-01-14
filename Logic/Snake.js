@@ -39,34 +39,44 @@ SnakeNS.Snake.prototype = (function() {
 
 		switch(this.direction) {
 		    case SnakeNS.DIRECTION.LEFT:		    
-				newBlock = {x:lastBlock.x + 1, y: lastBlock.y};					        
+				newBlock = {x:lastBlock.x - 1, y: lastBlock.y};				        
 		        break;
-		    case 2:
+		    case SnakeNS.DIRECTION.RIGHT:
+		    	newBlock = {x:lastBlock.x + 1, y: lastBlock.y};
 		        break;
-		    default:
-		        console.log("AS");
+		    case SnakeNS.DIRECTION.UP:
+		    	newBlock = {x:lastBlock.x, y: lastBlock.y - 1};
+		        break;
+	        case SnakeNS.DIRECTION.DOWN:
+	    		newBlock = {x:lastBlock.x, y: lastBlock.y + 1};
+	        	break;
 		} 
+		
 		this.coords.push(newBlock);
 		this.renderer.renderBlock(newBlock, this.name);
 	},
 
 	turnLeft = function() {
-
+		this.direction = SnakeNS.DIRECTION.LEFT;
 	},
 
 	turnRight = function() {
-
+		this.direction = SnakeNS.DIRECTION.RIGHT;
 	},
 
 	turnUp = function(){
-
+		this.direction = SnakeNS.DIRECTION.UP;
 	},
 
 	turnDown = function(){
-		
+		this.direction = SnakeNS.DIRECTION.DOWN;
 	}
 
 	return {
-		move: move
+		move: move,
+		turnLeft: turnLeft,
+		turnRight: turnRight,
+		turnUp: turnUp,
+		turnDown: turnDown
 	};
 }());

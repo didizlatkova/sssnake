@@ -34,16 +34,17 @@ $(document).ready(function() {
 
 	var renderer = new SnakeNS.Renderer(CLASS_NAMES);
 	var snakeName = "anaconda";
-	var snakeBlock = {x:1, y:1};	
-	var fruitBlock = {x:5, y:5};	
-	var snake = new SnakeNS.Snake(snakeName, [snakeBlock], "#004A7F", 1, {left:37, right:39, up: 38, down:40}, SnakeNS.DIRECTION.LEFT, renderer);
+	var snakeBlock = {x:1, y:1};
+	var fruitBlock = {x:5, y:5};
+	var snake = new SnakeNS.Snake(snakeName, [snakeBlock], "#004A7F", 1, {left:37, right:39, up: 38, down:40}, SnakeNS.DIRECTION.RIGHT, renderer);
 	var fruit = new SnakeNS.Fruit("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQf9vdIFkIrxbLdNFeg3_HWWmlM3-IvNSQ9ho28jHvrNg6q5r3C", 10, fruitBlock);
 
 	renderer.renderField(field);
 	renderer.renderBlock(snakeBlock, snakeName);
-	renderer.renderBlock(fruitBlock, CLASS_NAMES[SnakeNS.BLOCK_TYPE.FRUIT])
+	renderer.renderBlock(fruitBlock, CLASS_NAMES[SnakeNS.BLOCK_TYPE.FRUIT]);
 
 	SnakeNS.EventHandler.setupStyles(snake, fruit);
+	SnakeNS.EventHandler.setupEvents(snake);
 
 	SnakeNS.Engine.start(snake);
 });
