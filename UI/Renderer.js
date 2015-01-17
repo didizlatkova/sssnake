@@ -1,5 +1,6 @@
 /// <reference path="../Logic/BlockType.js" />
 
+'use strict';
 var SnakeNS = SnakeNS || {};
 
 SnakeNS.Renderer = function (classNames) {

@@ -2,6 +2,7 @@
 /// <reference path="BlockType.js" />
 /// <reference path="Fruit.js" />
 
+'use strict';
 var SnakeNS = SnakeNS || {};
 
 SnakeNS.Snake = function(name, coords, color, speed, controls, direction, renderer) {
@@ -15,18 +16,7 @@ SnakeNS.Snake = function(name, coords, color, speed, controls, direction, render
 };
 
 SnakeNS.Snake.prototype = (function() {
-	var checkForCollisions = function(field, block) {		
-		if (field[block.y][block.x] === SnakeNS.BLOCK_TYPE.WALL) {
-			return crashIntoWall();
-		}
-		if (this.coords.filter(function(e) { return e.x === block.x && e.y === block.y; }).length > 0) {
- 			return crashIntoSelf();
-		}
-
-		return false;
-	}
-
-	crashIntoWall = function() {
+	var crashIntoWall = function() {
 		alert("game over");
 		return true;
 	},
@@ -36,10 +26,12 @@ SnakeNS.Snake.prototype = (function() {
 		return true;
 	},
 
-	checkForFruit = function(fruit, field, block){
-		if (block.y === fruit.coords.y && block.x === fruit.coords.x) {
-			eatFruit.call(this, fruit, field);
-			return true;
+	checkForCollisions = function(field, block) {		
+		if (field[block.y][block.x] === SnakeNS.BLOCK_TYPE.WALL) {
+			return crashIntoWall();
+		}
+		if (this.coords.filter(function(e) { return e.x === block.x && e.y === block.y; }).length > 0) {
+ 			return crashIntoSelf();
 		}
 
 		return false;
@@ -50,6 +42,15 @@ SnakeNS.Snake.prototype = (function() {
 		fruit.generatePosition(field, this);
 		this.renderer.renderBlock(fruit.coords, SnakeNS.BLOCK_TYPE.FRUIT);
 	},
+
+	checkForFruit = function(fruit, field, block){
+		if (block.y === fruit.coords.y && block.x === fruit.coords.x) {
+			eatFruit.call(this, fruit, field);
+			return true;
+		}
+
+		return false;
+	},	
 
 	accelerate = function(value) {
 

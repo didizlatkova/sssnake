@@ -1,3 +1,4 @@
+'use strict';
 var SnakeNS = SnakeNS || {};
 
 SnakeNS.Engine = function() {};

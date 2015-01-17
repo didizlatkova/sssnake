@@ -1,6 +1,7 @@
 /// <reference path="jquery-1.8.2.js" />
 /// <reference path="../Logic/Direction.js" />
 
+'use strict';
 var SnakeNS = SnakeNS || {};
 
 SnakeNS.EventHandler = (function() {
