@@ -37,7 +37,14 @@ SnakeNS.Renderer.prototype = function () {
 	},
 
 	renderPoints = function (points) {
+		var pointsDiv = document.createElement("div");
+		pointsDiv.id = 'points';
+		pointsDiv.innerHTML = "Points: " + points;
+		document.body.appendChild(pointsDiv);
+	},
 
+	updatePoints = function (points) {
+		document.getElementById('points').innerHTML = "Points: " + points;
 	},
 
 	eraseBlock = function (block) {
@@ -48,6 +55,8 @@ SnakeNS.Renderer.prototype = function () {
 	return {
 		renderField: renderField,
 		eraseBlock: eraseBlock,
-		renderBlock: renderBlock
+		renderBlock: renderBlock,
+		renderPoints: renderPoints,
+		updatePoints: updatePoints
 	};
 }();

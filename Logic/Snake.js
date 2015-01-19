@@ -13,6 +13,7 @@ SnakeNS.Snake = function(name, coords, color, speed, controls, direction, render
 	this.controls = controls;
 	this.direction = direction;
 	this.renderer = renderer;
+	this.points = 0;
 };
 
 SnakeNS.Snake.prototype = (function() {
@@ -41,6 +42,8 @@ SnakeNS.Snake.prototype = (function() {
 		this.renderer.eraseBlock(fruit.coords);
 		fruit.generatePosition(field, this);
 		this.renderer.renderBlock(fruit.coords, SnakeNS.BLOCK_TYPE.FRUIT);
+		this.points += fruit.points;
+		this.renderer.updatePoints(this.points);
 	},
 
 	checkForFruit = function(fruit, field, block){

@@ -3,6 +3,14 @@ td {
  height: 15px;
 }
 
+#field{
+	float:left;
+}
+
+#points{
+	font-size: 20px;
+}
+
 .blank {
 	background-color: white;
 }
